@@ -8,9 +8,7 @@ def remove_from_set(inp:set, element)-> set:
         print('Converting to set...')
         inp = set(inp)
     # update input
-    if element in inp:
-        inp.remove(element)
-    # if element is not in, return the input
+    inp.discard(element) #better use inp.discard() than inp.remove() as it does not raise en error
     return inp
 
 if __name__=="__main__":
