@@ -12,7 +12,7 @@ import numpy as np
 # mouse callback function
 def draw_circle(event,x,y,flags,param):
     # take global variables:
-    global ix,iy,drawing,mode,r,g,b
+    global ix,iy,drawing,mode,r,g,b,size
     # if the user presses the mouse: start drawing
     if event == cv.EVENT_LBUTTONDOWN:
         drawing = True
@@ -20,11 +20,11 @@ def draw_circle(event,x,y,flags,param):
     # if the mouse moves and the button is pressed: continue adding cricles
     elif event == cv.EVENT_MOUSEMOVE:
         if drawing == True:
-            cv.circle(img,(x,y),5,(r,g,b),-1)
-    # if buton is unpressed: stop drawing but still add a circle
+            cv.circle(img,(x,y),size,(r,g,b),-1)
+    # if button is unpressed: stop drawing but still add a circle
     elif event == cv.EVENT_LBUTTONUP:
         drawing = False
-        cv.circle(img,(x,y),5,(r,g,b),-1)
+        cv.circle(img,(x,y),size,(r,g,b),-1)
 
 # initiate
 drawing = False # true if mouse is pressed
@@ -43,7 +43,8 @@ def nothing(x):
 cv.createTrackbar('R','image',0,255,nothing)
 cv.createTrackbar('G','image',0,255,nothing)
 cv.createTrackbar('B','image',0,255,nothing)
-# TODO: trackbar for brush size selection
+# trackbar for brush size selection
+cv.createTrackbar('brush size', 'image', 1, 20, nothing)
 
 cv.setMouseCallback('image',draw_circle)
 while(1):
@@ -54,7 +55,7 @@ while(1):
     r = cv.getTrackbarPos('R','image')
     g = cv.getTrackbarPos('G','image')
     b = cv.getTrackbarPos('B','image')
-
+    size = cv.getTrackbarPos('brush size', 'image')
     # close window on pressing Esc:
     if k == 27:
         break
