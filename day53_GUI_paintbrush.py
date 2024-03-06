@@ -3,7 +3,12 @@
 import cv2 as cv
 import numpy as np
 
+# using openCV
 # Tutorial: https://docs.opencv.org/4.x/db/d5b/tutorial_py_mouse_handling.html
+# will not work in ipython notebook!
+# use opencv pyenv
+
+# others use tkinter
 
 ####################################
 # draw curve of small circles by dragging mouse
@@ -35,7 +40,10 @@ ix,iy = -1,-1 #initial coordinates
 img = np.full((512,512,3),255, np.uint8)
 cv.namedWindow('image')
 
-# create trackbars for color change
+##############################################
+# add trackbar for color palette
+##############################################
+
 # it still requires callback - in this case, empty
 def nothing(x):
     pass
@@ -60,7 +68,3 @@ while(1):
     if k == 27:
         break
 cv.destroyAllWindows()
-
-##############################################
-# add trackbar for color palette
-##############################################
